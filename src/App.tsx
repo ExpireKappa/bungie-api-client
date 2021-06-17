@@ -1,5 +1,5 @@
 import React from 'react';
-import {PlayerSearch} from "./components/playerSearch/playerSearch";
+import {PlayerSearch} from "./components/playerSearch/playerSearch.component";
 import './App.css';
 
 function App() {
