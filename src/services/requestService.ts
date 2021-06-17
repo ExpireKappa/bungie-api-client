@@ -17,8 +17,4 @@ export class RequestService {
         const url = this.formatUrl(requestUrl, queryParams);
         return fetch(url, {method: "POST", headers: {"x-api-key": config.apiKey}});
     }
-
-
 }
-
-
