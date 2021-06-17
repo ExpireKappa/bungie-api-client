@@ -7,14 +7,14 @@
     flex-wrap: wrap;
 }
 
-form input {
+.search-form-container form input {
     display: block;
     width: 250px;
     padding: 5px;
     box-sizing: border-box;
 }
 
-form button {
+.search-form-container form button {
     display: block;
     width: 250px;
     padding: 5px;
