@@ -1,7 +1,7 @@
 import React, {ReactElement, Component, ChangeEvent, SyntheticEvent} from "react";
-import {requestPlayerNames} from "../apiBase";
 import {PlayerSearchCard} from "../playerSearchCard/playerSearchCard.component";
 import {IUserItem} from "./interfaces/IUserItem";
+import {searchUsers} from "../../services/userRequestService";
 
 interface IPlayerSearchState {
     value: string,
@@ -29,7 +29,7 @@ export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
     handleSearch(event: SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        requestPlayerNames(this.state.value)
+        searchUsers(this.state.value)
             .then((response: UserSearchResponse) => {
                 const searchItems = response.Response.map((item: IUserItem) => <PlayerSearchCard key={item.membershipId} iconPath={item.profilePicturePath} name={item.displayName}/>)
                 this.setState({results: searchItems})
