@@ -3,6 +3,8 @@ import {PlayerSearchCard} from "../playerSearchCard/playerSearchCard.component";
 import {IUserItem} from "./interfaces/IUserItem";
 import {searchUsers} from "../../services/userRequestService";
 
+import "./playerSearch.css"
+
 interface IPlayerSearchState {
     value: string,
     results: any
@@ -39,12 +41,14 @@ export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
     render(): ReactElement {
         return (
             <div className="search-container">
-                <form onSubmit={this.handleSearch}>
-                    <label>Search for player</label>
-                    <input type="text" placeholder="Player Name" value={this.state.value} onChange={this.handleChange}/>
-                    <button type="submit">Search</button>
-                </form>
-                <div>
+                <div className={"search-form-container"}>
+                    <h1>Search for player</h1>
+                    <form onSubmit={this.handleSearch}>
+                        <input type="text" placeholder="Player Name" value={this.state.value} onChange={this.handleChange}/>
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+                <div className={"search-results-container"}>
                     {this.state.results}
                 </div>
             </div>
