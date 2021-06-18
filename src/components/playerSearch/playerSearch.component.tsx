@@ -1,6 +1,7 @@
 import React, {ReactElement, Component, ChangeEvent, SyntheticEvent} from "react";
-import {PlayerSearchCard} from "../playerSearchCard/playerSearchCard.component";
 import {IUserItem} from "./interfaces/IUserItem";
+import {ISearchUsersResponse} from "./interfaces/ISearchUsersResponse";
+import {PlayerSearchCard} from "../playerSearchCard/playerSearchCard.component";
 import {searchUsers} from "../../services/userRequestService";
 
 import "./playerSearch.css"
@@ -8,11 +9,6 @@ import "./playerSearch.css"
 interface IPlayerSearchState {
     value: string,
     results: any
-}
-
-// todo: fill interface out with remaining props
-interface UserSearchResponse {
-    Response: Array<IUserItem>
 }
 
 export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
@@ -32,7 +28,7 @@ export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
         event.preventDefault();
 
         searchUsers(this.state.value)
-            .then((response: UserSearchResponse) => {
+            .then((response: ISearchUsersResponse) => {
                 const searchItems = response.Response.map((item: IUserItem) => <PlayerSearchCard key={item.membershipId} iconPath={item.profilePicturePath} name={item.displayName}/>)
                 this.setState({results: searchItems})
             })
