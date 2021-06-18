@@ -18,10 +18,10 @@ export interface IUserItem {
     psnDisplayName: string
     xboxDisplayName: string
     fbDisplayName: string
-    showActivity: boolean
+    showActivity?: boolean
     locale: string
     localeInheritDefault: boolean
-    lastBanReportId: number
+    lastBanReportId?: number
     showGroupMessaging: boolean
     profilePicturePath: string
     profilePictureWidePath: string
@@ -29,7 +29,7 @@ export interface IUserItem {
     userTitleDisplay: string
     statusText: string
     statusDate: Date
-    profileBanExpire: Date
+    profileBanExpire?: Date
     blizzardDisplayName: string
     steamDisplayName: string
     stadiaDisplayName: string
