@@ -8,7 +8,7 @@ import "./playerSearch.css"
 
 interface IPlayerSearchState {
     value: string,
-    results: any
+    results: Array<ReactElement> | null
 }
 
 export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
