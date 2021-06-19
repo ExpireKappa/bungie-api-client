@@ -11,6 +11,9 @@ function App() {
                 <Route path="/" exact>
                     <PlayerSearch />
                 </Route>
+                <Route path="/profile/:membershipId">
+                    <h1>Profile</h1>
+                </Route>
             </Switch>
         </Router>
     );
