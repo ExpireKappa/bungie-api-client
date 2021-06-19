@@ -1,4 +1,5 @@
+import {IUserItem} from "../../playerSearch/interfaces/IUserItem";
+
 export interface IPlayerSearchCardProps {
-    iconPath: string;
-    name: string
+    item: IUserItem
 }

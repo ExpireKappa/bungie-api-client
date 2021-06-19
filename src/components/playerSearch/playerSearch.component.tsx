@@ -29,7 +29,7 @@ export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
 
         searchUsers(this.state.value)
             .then((response: ISearchUsersResponse) => {
-                const searchItems = response.Response.map((item: IUserItem) => <PlayerSearchCard key={item.membershipId} iconPath={item.profilePicturePath} name={item.displayName}/>)
+                const searchItems = response.Response.map((item: IUserItem) => <PlayerSearchCard key={item.membershipId} item={item} />)
                 this.setState({results: searchItems})
             })
     }
