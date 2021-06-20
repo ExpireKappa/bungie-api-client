@@ -7,14 +7,14 @@
     flex-wrap: wrap;
 }
 
-.search-form-container form input {
+.search-form-input {
     display: block;
     width: 250px;
     padding: 5px;
     box-sizing: border-box;
 }
 
-.search-form-container form button {
+.search-form-submit {
     display: block;
     width: 250px;
     padding: 5px;

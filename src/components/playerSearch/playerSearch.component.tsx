@@ -40,8 +40,13 @@ export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
                 <div className={"search-form-container"}>
                     <h1>Search for player</h1>
                     <form onSubmit={this.handleSearch}>
-                        <input type="text" placeholder="Player Name" value={this.state.value} onChange={this.handleChange} required/>
-                        <button type="submit">Search</button>
+                        <input type="text"
+                               className={"search-form-input"}
+                               placeholder="Player Name"
+                               value={this.state.value}
+                               onChange={this.handleChange}
+                               required/>
+                        <button type="submit" className={"search-form-submit"}>Search</button>
                     </form>
                 </div>
                 <div className={"search-results-container"}>
