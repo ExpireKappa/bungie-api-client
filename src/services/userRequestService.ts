@@ -35,6 +35,8 @@ export const getUserById = (id: string) => {
         })
 }
 
+
+// Todo: Maybe move these into a destiny 2 request class?
 export const getProfile = (membershipType: number, destinyMembershipId: string) => {
     return new RequestService().get(`${platformRoot + Destiny2_GetProfile.replace("{membershipType}", membershipType.toString()).replace("{destinyMembershipId}", destinyMembershipId)}?components=200`, [])
         .then((response: Response) => {

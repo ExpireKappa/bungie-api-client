@@ -22,6 +22,7 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
 
     getDestinyProfile(profile: IUserItem) {
         let membershipType: number = 0;
+        // todo: use bungie provided enum for membership types
         if (profile?.steamDisplayName) {
             membershipType = 3;
         } else if (profile?.psnDisplayName) {
@@ -31,6 +32,7 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
         }
 
         if (profile?.displayName) {
+            // Todo: type server responses and add some validation
             searchDestinyPlayer(membershipType, profile.displayName).then((response) => {
                 console.log(response.Response[0].membershipId)
                 getProfile(membershipType, response.Response[0].membershipId).then((response) => {
