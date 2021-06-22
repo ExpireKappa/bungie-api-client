@@ -19,3 +19,14 @@ export const searchUsers = (q: string) => {
             return response.json();
         })
 }
+
+export const getUserById = (id: string) => {
+    return new RequestService().get(`${platformRoot + User_GetUserById.replace("{id}", id)}`, [])
+        .then((response: Response) => {
+            if (response.status !== 200) {
+                throw new Error("Error searching users");
+            }
+
+            return response.json();
+        })
+}

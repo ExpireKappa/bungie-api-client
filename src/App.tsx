@@ -3,6 +3,7 @@ import {PlayerSearch} from "./components/playerSearch/playerSearch.component";
 import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
 
 import './App.css';
+import {ProfileWrapper} from "./components/profile/profileWrapper.component";
 
 function App() {
     return (
@@ -12,7 +13,7 @@ function App() {
                     <PlayerSearch />
                 </Route>
                 <Route path="/profile/:membershipId">
-                    <h1>Profile</h1>
+                    <ProfileWrapper />
                 </Route>
             </Switch>
         </Router>
