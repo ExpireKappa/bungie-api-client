@@ -1,7 +1,10 @@
 import React, {FunctionComponent} from "react";
-import "./playerSearchCard.css"
+
 import {IPlayerSearchCardProps} from "./interfaces/IPlayerSearchCardProps";
+
 import { useHistory } from "react-router-dom";
+
+import "./playerSearchCard.css"
 
 export const PlayerSearchCard: FunctionComponent<IPlayerSearchCardProps> = (props) => {
     const iconPath = `https://www.bungie.net${props.item.profilePicturePath}`;

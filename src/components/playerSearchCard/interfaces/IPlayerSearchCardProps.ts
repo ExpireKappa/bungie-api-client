@@ -1,5 +1,5 @@
-import {IUserItem} from "../../playerSearch/interfaces/IUserItem";
+import {GeneralUser} from "bungie-api-ts/user";
 
 export interface IPlayerSearchCardProps {
-    item: IUserItem
+    item: GeneralUser
 }

@@ -1,10 +1,11 @@
-import {IUserItem} from "../playerSearch/interfaces/IUserItem";
 import {FunctionComponent} from "react";
+
+import {GeneralUser} from "bungie-api-ts/user";
 
 import "./profile.css"
 
 interface IProfileProps {
-    profile: IUserItem | null
+    profile: GeneralUser | null
 }
 
 export const Profile: FunctionComponent<IProfileProps> = (props) => {

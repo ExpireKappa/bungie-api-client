@@ -1,11 +1,12 @@
 import React, {ReactElement, Component, ChangeEvent, SyntheticEvent} from "react";
-import {IUserItem} from "./interfaces/IUserItem";
-import {ISearchUsersResponse} from "./interfaces/ISearchUsersResponse";
+
+import {ServerResponse} from "bungie-api-ts/common";
+import {GeneralUser} from "bungie-api-ts/user";
+
 import {PlayerSearchCard} from "../playerSearchCard/playerSearchCard.component";
 import {searchUsers} from "../../services/userRequestService";
 
 import "./playerSearch.css"
-import {IServerResponse} from "../../interfaces/IServerResponse";
 
 interface IPlayerSearchState {
     value: string,
@@ -29,8 +30,8 @@ export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
         event.preventDefault();
 
         searchUsers(this.state.value)
-            .then((response: IServerResponse<Array<IUserItem>>) => {
-                const searchItems = response.Response.map((item: IUserItem) => <PlayerSearchCard key={item.membershipId} item={item} />)
+            .then((response: ServerResponse<Array<GeneralUser>>) => {
+                const searchItems = response.Response.map((item: GeneralUser) => <PlayerSearchCard key={item.membershipId} item={item} />)
                 this.setState({results: searchItems})
             })
     }
