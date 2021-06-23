@@ -2,6 +2,8 @@ import React, {Component, ReactElement} from "react";
 import {getProfile, getUserById, searchDestinyPlayer} from "../../services/userRequestService";
 import {IUserItem} from "../playerSearch/interfaces/IUserItem";
 import {Profile} from "./profile.component";
+import {IServerResponse} from "../../interfaces/IServerResponse";
+import {IUserInfoCard} from "./interfaces/IUserInfoCard";
 
 interface IProfileLoaderProps {
     membershipId: string
@@ -33,9 +35,9 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
 
         if (profile?.displayName) {
             // Todo: type server responses and add some validation
-            searchDestinyPlayer(membershipType, profile.displayName).then((response) => {
+            searchDestinyPlayer(membershipType, profile.displayName).then((response: IServerResponse<Array<IUserInfoCard>>) => {
                 console.log(response.Response[0].membershipId)
-                getProfile(membershipType, response.Response[0].membershipId).then((response) => {
+                getProfile(membershipType, response.Response[0].membershipId.toString()).then((response) => {
                     console.log(response)
                 })
             })
