@@ -5,6 +5,7 @@ import {PlayerSearchCard} from "../playerSearchCard/playerSearchCard.component";
 import {searchUsers} from "../../services/userRequestService";
 
 import "./playerSearch.css"
+import {IServerResponse} from "../../interfaces/IServerResponse";
 
 interface IPlayerSearchState {
     value: string,
@@ -28,7 +29,7 @@ export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
         event.preventDefault();
 
         searchUsers(this.state.value)
-            .then((response: ISearchUsersResponse) => {
+            .then((response: IServerResponse<Array<IUserItem>>) => {
                 const searchItems = response.Response.map((item: IUserItem) => <PlayerSearchCard key={item.membershipId} item={item} />)
                 this.setState({results: searchItems})
             })
