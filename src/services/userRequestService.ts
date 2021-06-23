@@ -1,4 +1,4 @@
-import {RequestService} from "./requestService";
+import {send} from "./requestService";
 
 // todo: move these const values somewhere more logical
 
@@ -14,7 +14,10 @@ const Destiny2_GetProfile = "/Destiny2/{membershipType}/Profile/{destinyMembersh
 const Destiny2_SearchDestinyPlayer = "/Destiny2/SearchDestinyPlayer/{membershipType}/{displayName}/";
 
 export const searchUsers = (q: string) => {
-    return new RequestService().get(`${platformRoot + User_SearchUsers}`, [["q", q]])
+    const url = new URL(`${platformRoot + User_SearchUsers}`);
+    url.searchParams.append("q", q);
+
+    return send({method: "GET", url: url})
         .then((response: Response) => {
             if (response.status !== 200) {
                 throw new Error("Error searching users");
@@ -25,7 +28,10 @@ export const searchUsers = (q: string) => {
 }
 
 export const getUserById = (id: string) => {
-    return new RequestService().get(`${platformRoot + User_GetUserById.replace("{id}", id)}`, [])
+    const searchUsers = User_GetUserById.replace("{id}", id);
+    const url = new URL(`${platformRoot + searchUsers}`);
+
+    return send({method: "GET", url: url})
         .then((response: Response) => {
             if (response.status !== 200) {
                 throw new Error("Error searching users");
@@ -38,7 +44,12 @@ export const getUserById = (id: string) => {
 
 // Todo: Maybe move these into a destiny 2 request class?
 export const getProfile = (membershipType: number, destinyMembershipId: string) => {
-    return new RequestService().get(`${platformRoot + Destiny2_GetProfile.replace("{membershipType}", membershipType.toString()).replace("{destinyMembershipId}", destinyMembershipId)}?components=200`, [])
+    const getProfile = Destiny2_GetProfile.replace("{membershipType}", membershipType.toString())
+                                          .replace("{destinyMembershipId}", destinyMembershipId);
+    const url = new URL(`${platformRoot + getProfile}`);
+    url.searchParams.append("components", "200");
+
+    return send({method: "GET", url: url})
         .then((response: Response) => {
             if (response.status !== 200) {
                 throw new Error("Error searching users");
@@ -49,12 +60,16 @@ export const getProfile = (membershipType: number, destinyMembershipId: string) 
 }
 
 export const searchDestinyPlayer = (membershipType: number, displayName: string) => {
-    return new RequestService().get(`${platformRoot + Destiny2_SearchDestinyPlayer.replace("{membershipType}", membershipType.toString()).replace("{displayName}", displayName)}`, [])
+    const searchDestinyPlayer = Destiny2_SearchDestinyPlayer.replace("{membershipType}", membershipType.toString())
+        .replace("{displayName}", displayName);
+    const url = new URL(`${platformRoot + searchDestinyPlayer}`);
+
+    return send({method: "GET", url: url})
         .then((response: Response) => {
             if (response.status !== 200) {
                 throw new Error("Error searching users");
             }
 
             return response.json();
-        })
+        });
 }

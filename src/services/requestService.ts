@@ -1,20 +1,11 @@
 import {config} from "../dev.config";
 
-export class RequestService {
+interface IRequestConfig {
+    method: string; // convert to enum
+    url: URL
+}
 
-    private formatUrl(requestUrl: string, queryParams: Array<Array<string>>): string {
-        const url = new URL(requestUrl);
-        queryParams.map(param => url.searchParams.append(param[0], param[1]))
-        return url.toString();
-    }
-
-    public get(requestUrl: string, queryParams: Array<Array<string>>) {
-        const url = this.formatUrl(requestUrl, queryParams);
-        return fetch(url, {method: "GET", headers: {"x-api-key": config.apiKey}});
-    }
-
-    public post(requestUrl: string, queryParams: Array<Array<string>>) {
-        const url = this.formatUrl(requestUrl, queryParams);
-        return fetch(url, {method: "POST", headers: {"x-api-key": config.apiKey}});
-    }
+// todo: still not happy with this, still causes duplication of code
+export const send = (requestConfig: IRequestConfig) => {
+    return fetch(requestConfig.url.toString(), {method: requestConfig.method, headers: {"x-api-key": config.apiKey}});
 }
