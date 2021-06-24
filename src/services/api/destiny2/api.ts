@@ -1,6 +1,5 @@
 import {send} from "../requestBase";
 
-const domainRoot = "https://www.bungie.net";
 const platformRoot = "https://www.bungie.net/Platform";
 
 const Destiny2_GetProfile = "/Destiny2/{membershipType}/Profile/{destinyMembershipId}/";
@@ -12,14 +11,7 @@ export const getProfile = (membershipType: number, destinyMembershipId: string) 
     const url = new URL(`${platformRoot + getProfile}`);
     url.searchParams.append("components", "200");
 
-    return send({method: "GET", url: url})
-        .then((response: Response) => {
-            if (response.status !== 200) {
-                throw new Error("Error searching users");
-            }
-
-            return response.json();
-        })
+    return send({method: "GET", url: url});
 }
 
 export const searchDestinyPlayer = (membershipType: number, displayName: string) => {
@@ -27,12 +19,5 @@ export const searchDestinyPlayer = (membershipType: number, displayName: string)
         .replace("{displayName}", displayName);
     const url = new URL(`${platformRoot + searchDestinyPlayer}`);
 
-    return send({method: "GET", url: url})
-        .then((response: Response) => {
-            if (response.status !== 200) {
-                throw new Error("Error searching users");
-            }
-
-            return response.json();
-        });
+    return send({method: "GET", url: url});
 }

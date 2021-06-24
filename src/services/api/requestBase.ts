@@ -8,7 +8,18 @@ interface IRequestConfig {
 
 // todo: remove export once all methods are converted over to api helpers
 export const send = (requestConfig: IRequestConfig) => {
-    return fetch(requestConfig.url.toString(), {method: requestConfig.method, headers: {"x-api-key": config.apiKey}});
+    return fetch(requestConfig.url.toString(), {
+        method: requestConfig.method,
+        headers: {
+            "x-api-key": config.apiKey
+        }
+    }).then((response) => {
+        if (response.status !== 200) {
+            throw new Error("Error with api request");
+        }
+
+        return response.json();
+    });
 }
 
 export const http = (httpConfig: HttpClientConfig): Promise<any> => {
