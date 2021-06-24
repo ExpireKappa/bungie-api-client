@@ -1,10 +1,5 @@
-import {searchUsers} from "bungie-api-ts/user";
-import {http, send} from "../requestBase";
-
-const platformRoot = "https://www.bungie.net/Platform";
-
-// User
-const User_GetUserById = "/User/GetBungieNetUserById/{id}/";
+import {getBungieNetUserById, searchUsers} from "bungie-api-ts/user";
+import {http} from "../requestBase";
 
 export const SearchUsers = (q: string) => {
     // @ts-ignore - Will fix soontm
@@ -18,18 +13,12 @@ export const SearchUsers = (q: string) => {
 }
 
 export const getUserById = (id: string) => {
-    const searchUsers = User_GetUserById.replace("{id}", id);
-    const url = new URL(`${platformRoot + searchUsers}`);
+    // @ts-ignore - will fix soontm
+    return getBungieNetUserById(http, {id: id}).then((response: Response) => {
+        if (response.status !== 200) {
+            throw new Error("Error searching for users");
+        }
 
-    return send({method: "GET", url: url})
-        .then((response: Response) => {
-            if (response.status !== 200) {
-                throw new Error("Error searching users");
-            }
-
-            return response.json();
-        })
+        return response.json();
+    });
 }
-
-
-
