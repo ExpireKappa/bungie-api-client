@@ -4,7 +4,7 @@ import {ServerResponse} from "bungie-api-ts/common";
 import {GeneralUser} from "bungie-api-ts/user";
 
 import {PlayerSearchCard} from "../playerSearchCard/playerSearchCard.component";
-import {searchUsers} from "../../services/userRequestService";
+import {SearchUsers} from "../../services/api/user/api";
 
 import "./playerSearch.css"
 
@@ -29,11 +29,10 @@ export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
     handleSearch(event: SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        searchUsers(this.state.value)
-            .then((response: ServerResponse<Array<GeneralUser>>) => {
-                const searchItems = response.Response.map((item: GeneralUser) => <PlayerSearchCard key={item.membershipId} item={item} />)
-                this.setState({results: searchItems})
-            })
+        SearchUsers(this.state.value).then((response: ServerResponse<Array<GeneralUser>>) => {
+            const searchItems = response.Response.map((item: GeneralUser) => <PlayerSearchCard key={item.membershipId} item={item} />)
+            this.setState({results: searchItems})
+        })
     }
 
     render(): ReactElement {

@@ -1,7 +1,7 @@
-import {config} from "../dev.config";
+import {config} from "../../dev.config";
 
 interface IRequestConfig {
-    method: string; // convert to enum
+    method: string;
     url: URL
 }
 

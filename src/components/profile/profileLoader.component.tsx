@@ -4,8 +4,9 @@ import {GeneralUser, UserInfoCard} from "bungie-api-ts/user";
 import {ServerResponse} from "bungie-api-ts/common";
 import {DestinyProfileResponse} from "bungie-api-ts/destiny2";
 
-import {getProfile, getUserById, searchDestinyPlayer} from "../../services/userRequestService";
+import {getUserById} from "../../services/api/user/api";
 import {Profile} from "./profile.component";
+import {getProfile, searchDestinyPlayer} from "../../services/api/destiny2/api";
 
 interface IProfileLoaderProps {
     membershipId: string
