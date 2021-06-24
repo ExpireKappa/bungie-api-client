@@ -6,7 +6,7 @@ import {DestinyProfileResponse} from "bungie-api-ts/destiny2";
 
 import {getUserById} from "../../services/api/user/api";
 import {Profile} from "./profile.component";
-import {getProfile, searchDestinyPlayer} from "../../services/api/destiny2/api";
+import {GetProfile, SearchDestinyPlayer} from "../../services/api/destiny2/api";
 
 interface IProfileLoaderProps {
     membershipId: string
@@ -37,10 +37,10 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
         }
 
         if (profile?.displayName) {
-            // Todo: type server responses and add some validation
-            searchDestinyPlayer(membershipType, profile.displayName).then((response: ServerResponse<Array<UserInfoCard>>) => {
+            // Todo: add some validation
+            SearchDestinyPlayer(membershipType, profile.displayName).then((response: ServerResponse<Array<UserInfoCard>>) => {
                 console.log(response.Response[0].membershipId)
-                getProfile(membershipType, response.Response[0].membershipId.toString()).then((response: ServerResponse<DestinyProfileResponse>) => {
+                GetProfile(membershipType, response.Response[0].membershipId.toString()).then((response: ServerResponse<DestinyProfileResponse>) => {
                     console.log(response)
                 })
             })

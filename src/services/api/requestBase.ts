@@ -6,8 +6,7 @@ interface IRequestConfig {
     url: URL
 }
 
-// todo: remove export once all methods are converted over to api helpers
-export const send = (requestConfig: IRequestConfig) => {
+const send = (requestConfig: IRequestConfig) => {
     return fetch(requestConfig.url.toString(), {
         method: requestConfig.method,
         headers: {
@@ -15,6 +14,7 @@ export const send = (requestConfig: IRequestConfig) => {
         }
     }).then((response) => {
         if (response.status !== 200) {
+            console.log(response)
             throw new Error("Error with api request");
         }
 
