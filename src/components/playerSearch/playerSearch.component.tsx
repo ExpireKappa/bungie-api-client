@@ -4,7 +4,7 @@ import {ServerResponse} from "bungie-api-ts/common";
 import {GeneralUser} from "bungie-api-ts/user";
 
 import {PlayerSearchCard} from "../playerSearchCard/playerSearchCard.component";
-import {SearchUsers} from "../../services/api/user/api";
+import {SearchUsers} from "../../api/user/api";
 
 import "./playerSearch.css"
 

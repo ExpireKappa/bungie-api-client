@@ -1,4 +1,4 @@
-import {config} from "../../dev.config";
+import {config} from "../dev.config";
 import {HttpClientConfig} from "bungie-api-ts/http";
 
 interface IRequestConfig {
