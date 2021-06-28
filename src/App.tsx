@@ -4,19 +4,28 @@ import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
 
 import './App.css';
 import {ProfileWrapper} from "./components/profile/profileWrapper.component";
+import {Dashboard} from "./components/dashboard/dashboard.component";
+import {NavBar} from "./components/nav-bar/nav-bar.component";
 
 function App() {
     return (
-        <Router>
-            <Switch>
-                <Route path="/" exact>
-                    <PlayerSearch />
-                </Route>
-                <Route path="/profile/:membershipId">
-                    <ProfileWrapper />
-                </Route>
-            </Switch>
-        </Router>
+        <>
+            <Router>
+                <NavBar />
+                <Switch>
+                    <Route path="/" exact>
+                        <Dashboard />
+                    </Route>
+                    {/* hopefully the search can be more widespread against the api in the future*/}
+                    <Route path="/search">
+                        <PlayerSearch />
+                    </Route>
+                    <Route path="/profile/:membershipId">
+                        <ProfileWrapper />
+                    </Route>
+                </Switch>
+            </Router>
+        </>
     );
 }
 

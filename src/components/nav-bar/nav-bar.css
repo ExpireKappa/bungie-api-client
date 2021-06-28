@@ -1,0 +1,26 @@
+.nav-container {
+    height: 60px;
+    background: lightblue;
+    display: flex;
+    align-items: center;
+}
+
+.nav-app-title {
+    font-size: 2rem;
+    float: left;
+    margin: 0 0 0 10px;
+}
+
+.nav-list-container {
+    list-style-type: none;
+}
+
+.nav-list-item {
+    float: left;
+}
+
+.nav-list-item a {
+    display: block;
+    color: black;
+    text-decoration: none;
+}
