@@ -9,6 +9,7 @@ import {Profile} from "./profile.component";
 import {GetProfile, SearchDestinyPlayer} from "../../api/destiny2/api";
 
 interface IProfileLoaderProps {
+    membershipType: string
     membershipId: string
 }
 
@@ -18,29 +19,21 @@ interface IProfileLoaderState {
 }
 
 export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoaderState> {
+    private membershipType: number;
 
     constructor(props: IProfileLoaderProps) {
         super(props);
         this.state = {bungieProfile: null, ready: false}
+        this.membershipType = Number(this.props.membershipType);
 
     }
 
     getDestinyProfile(profile: GeneralUser) {
-        let membershipType: number = 0;
-        // todo: use bungie provided enum for membership types
-        if (profile?.steamDisplayName) {
-            membershipType = 3;
-        } else if (profile?.psnDisplayName) {
-            membershipType = 2;
-        } else if (profile?.xboxDisplayName) {
-            membershipType = 1;
-        }
-
         if (profile?.displayName) {
             // Todo: add some validation
-            SearchDestinyPlayer(membershipType, profile.displayName).then((response: ServerResponse<Array<UserInfoCard>>) => {
+            SearchDestinyPlayer(this.membershipType, profile.displayName).then((response: ServerResponse<Array<UserInfoCard>>) => {
                 console.log(response.Response[0].membershipId)
-                GetProfile(membershipType, response.Response[0].membershipId.toString()).then((response: ServerResponse<DestinyProfileResponse>) => {
+                GetProfile(this.membershipType, response.Response[0].membershipId.toString()).then((response: ServerResponse<DestinyProfileResponse>) => {
                     console.log(response)
                 })
             })

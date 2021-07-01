@@ -1,12 +1,16 @@
 .search-card-container {
     width: 200px;
-    height: 50px;
     margin: 5px;
     border: solid thin black;
     display: flex;
+    flex-direction: column;
 }
 
-.search-card-container span {
+.search-card-top-wrapper {
+    display: flex;
+}
+
+.search-card-top-wrapper span {
     flex-grow: 1;
     margin: 5px;
     align-self: center;
@@ -17,4 +21,8 @@
     height: 50px;
     width: 50px;
     background: black;
+}
+
+.search-card-platform-container span {
+    margin-right: 5px;
 }

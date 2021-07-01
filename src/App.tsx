@@ -20,7 +20,7 @@ function App() {
                     <Route path="/search">
                         <PlayerSearch />
                     </Route>
-                    <Route path="/profile/:membershipId">
+                    <Route path="/profile/:membershipType/:membershipId">
                         <ProfileWrapper />
                     </Route>
                 </Switch>
