@@ -23,6 +23,17 @@
     background: black;
 }
 
-.search-card-platform-container span {
+.search-card-platform-container .platform-title {
+    display: flex;
+    background: #232324;
+}
+
+.search-card-platform-container .platform-title span {
+    margin: 0 auto;
+    color: white;
+}
+
+.search-card-platform-container .platform-list span {
     margin-right: 5px;
 }
+

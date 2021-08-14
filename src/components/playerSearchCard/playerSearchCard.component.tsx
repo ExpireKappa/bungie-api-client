@@ -41,9 +41,14 @@ export const PlayerSearchCard: FunctionComponent<IPlayerSearchCardProps> = (prop
               <span>{props.item.displayName}</span>
           </div>
           <div className={"search-card-platform-container"}>
-              {hasSteam ? <span>Steam</span> : null}
-              {hasPsn ? <span>PSN</span> : null}
-              {hasXbox ? <span>Xbox</span> : null}
+              <div className="platform-title">
+                  <span>Platform</span>
+              </div>
+              <div className="platform-list">
+                {hasSteam ? <span>Steam</span> : null}
+                {hasPsn ? <span>PSN</span> : null}
+                {hasXbox ? <span>Xbox</span> : null}
+              </div>
           </div>
       </div>
     );
