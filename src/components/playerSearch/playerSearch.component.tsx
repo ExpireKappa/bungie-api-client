@@ -1,8 +1,6 @@
 import React, {ReactElement, Component, ChangeEvent, SyntheticEvent} from "react";
-
 import {ServerResponse} from "bungie-api-ts/common";
 import {GeneralUser} from "bungie-api-ts/user";
-
 import {PlayerSearchCard} from "../playerSearchCard/playerSearchCard.component";
 import {SearchUsers} from "../../api/user/api";
 
@@ -26,11 +24,16 @@ export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
         this.setState({value: event.target.value})
     }
 
+    filterProfiles(profiles: Array<GeneralUser>) {
+        return profiles.filter(profile => profile.blizzardDisplayName || profile.psnDisplayName || profile.xboxDisplayName || profile.stadiaDisplayName || profile.steamDisplayName);
+    }
+
     handleSearch(event: SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
 
         SearchUsers(this.state.value).then((response: ServerResponse<Array<GeneralUser>>) => {
-            const searchItems = response.Response.map((item: GeneralUser) => <PlayerSearchCard key={item.membershipId} item={item} />)
+            const filtered = this.filterProfiles(response.Response);
+            const searchItems = filtered.map((item: GeneralUser) => <PlayerSearchCard key={item.membershipId} item={item} />)
             this.setState({results: searchItems})
         })
     }
