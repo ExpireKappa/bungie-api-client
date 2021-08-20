@@ -1,9 +1,9 @@
 import {http} from "../requestBase";
-import {getProfile, searchDestinyPlayer} from "bungie-api-ts/destiny2";
+import {DestinyComponentType, getProfile, searchDestinyPlayer} from "bungie-api-ts/destiny2";
 
-export const GetProfile = (membershipType: number, destinyMembershipId: string) => {
+export const GetProfile = (membershipType: number, destinyMembershipId: string, components: Array<number>) => {
     return getProfile(http, {
-        components: [],
+        components: components,
         membershipType: membershipType,
         destinyMembershipId: destinyMembershipId
     });

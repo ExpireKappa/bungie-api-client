@@ -1,10 +1,11 @@
 import React, {ReactElement, Component, ChangeEvent, SyntheticEvent} from "react";
 import {ServerResponse} from "bungie-api-ts/common";
-import {GeneralUser} from "bungie-api-ts/user";
+import {GeneralUser, UserInfoCard} from "bungie-api-ts/user";
 import {DestinyProfileCard} from "../DestinyProfileCard/DestinyProfileCard.component";
 import {SearchUsers} from "../../api/user/api";
 
 import "./playerSearch.css"
+import { SearchDestinyPlayer } from "../../api/destiny2/api";
 
 interface IPlayerSearchState {
     value: string,

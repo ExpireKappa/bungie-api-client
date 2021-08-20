@@ -1,11 +1,10 @@
 import React from 'react';
-import {PlayerSearch} from "./components/playerSearch/playerSearch.component";
 import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
-
-import './App.css';
+import { PlayerSearch } from './components/PlayerSearch/PlayerSearch.component';
 import {ProfileWrapper} from "./components/profile/profileWrapper.component";
 import {Dashboard} from "./components/dashboard/dashboard.component";
 import {NavBar} from "./components/nav-bar/nav-bar.component";
+import './App.css';
 
 function App() {
     return (

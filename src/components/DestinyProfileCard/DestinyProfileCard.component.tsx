@@ -1,9 +1,9 @@
-import React, {FunctionComponent} from "react";
+import React, {FunctionComponent, ReactElement} from "react";
 import {IPlayerSearchCardProps} from "./interfaces/IDestinyProfileCardProps";
 import { useHistory } from "react-router-dom";
 import "./destinyProfileCard.css"
 
-export const DestinyProfileCard: FunctionComponent<IPlayerSearchCardProps> = (props) => {
+export const DestinyProfileCard: FunctionComponent<IPlayerSearchCardProps> = (props): ReactElement => {
     const iconPath = `https://www.bungie.net${props.item.profilePicturePath}`;
     const history = useHistory();
 
@@ -36,14 +36,14 @@ export const DestinyProfileCard: FunctionComponent<IPlayerSearchCardProps> = (pr
         return 0;
     }
 
-    const onClick = () => {
+    const onClick = (): void => {
         history.push(`/profile/${getType()}/${props.item.membershipId}`)
     }
 
     return (
       <div className={"search-card-container"} onClick={e => onClick()}>
           <div className={"search-card-top-wrapper"}>
-              <img className={"search-card-platform-icon"} src={iconPath} alt={"User platform icon"}/>
+              <img className={"search-card-platform-icon"} src={iconPath} alt="Bungie account avatar"/>
               <span>{props.item.displayName}</span>
           </div>
           <div className={"search-card-platform-container"}>

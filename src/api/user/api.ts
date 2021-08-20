@@ -1,4 +1,4 @@
-import {getBungieNetUserById, searchUsers} from "bungie-api-ts/user";
+import {getBungieNetUserById, getMembershipDataById, searchUsers} from "bungie-api-ts/user";
 import {http} from "../requestBase";
 
 export const SearchUsers = (q: string) => {
@@ -7,8 +7,15 @@ export const SearchUsers = (q: string) => {
     });
 }
 
-export const getUserById = (id: string) => {
+export const GetUserById = (id: string) => {
     return getBungieNetUserById(http, {
         id: id
     });
 }
+
+export const GetMembershipDataById = (membershipId: string, membershipType: number) => {
+    return getMembershipDataById(http, {
+        membershipId: membershipId,
+        membershipType: membershipType
+    });
+} 

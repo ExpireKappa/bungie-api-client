@@ -1,12 +1,12 @@
 import React, {Component, ReactElement} from "react";
 
-import {GeneralUser, UserInfoCard} from "bungie-api-ts/user";
 import {ServerResponse} from "bungie-api-ts/common";
-import {DestinyProfileResponse} from "bungie-api-ts/destiny2";
+import {GeneralUser, UserInfoCard, UserMembershipData} from "bungie-api-ts/user";
+import {DestinyCharacterComponent, DestinyComponentType, DestinyProfileResponse, DictionaryComponentResponse} from "bungie-api-ts/destiny2";
 
-import {getUserById} from "../../api/user/api";
-import {Profile} from "./profile.component";
+import {GetMembershipDataById, GetUserById} from "../../api/user/api";
 import {GetProfile, SearchDestinyPlayer} from "../../api/destiny2/api";
+import {Profile} from "./profile.component";
 
 interface IProfileLoaderProps {
     membershipType: string
@@ -15,6 +15,7 @@ interface IProfileLoaderProps {
 
 interface IProfileLoaderState {
     bungieProfile: GeneralUser | null
+    profileCharacters: any | null;
 }
 
 export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoaderState> {
@@ -22,28 +23,29 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
 
     constructor(props: IProfileLoaderProps) {
         super(props);
-        this.state = {bungieProfile: null}
+        this.state = {bungieProfile: null, profileCharacters: null}
         this.membershipType = Number(this.props.membershipType);
 
     }
 
-    getDestinyProfile(profile: GeneralUser) {
-        if (profile?.displayName) {
-            // Todo: add some validation
-            SearchDestinyPlayer(this.membershipType, profile.displayName).then((response: ServerResponse<Array<UserInfoCard>>) => {
-                if (response.Response[0]?.membershipId !== undefined) {
-                    GetProfile(this.membershipType, response.Response[0].membershipId.toString()).then((response: ServerResponse<DestinyProfileResponse>) => {
-                        console.log(response)
-                    })
-                }
-            })
-        }
+    getDestinyCharacters(profile: GeneralUser): void {
+        GetMembershipDataById(profile.membershipId, -1).then((response: ServerResponse<UserMembershipData>) => {
+            console.log(response);
+            if (response.Response.primaryMembershipId !== undefined) {
+                GetProfile(response.Response.destinyMemberships[0].membershipType, response.Response?.primaryMembershipId, [200]).then((response: ServerResponse<any>) =>  {
+                    console.log(response);
+                    if (response.Response.characters.data !== undefined) {
+                        this.setState({profileCharacters: response.Response.characters.data})
+                    }
+                });
+            }
+        });
     }
 
-    getBungieProfile() {
-        getUserById(this.props.membershipId).then((response: ServerResponse<GeneralUser>) => {
+    getBungieProfile(): void {
+        GetUserById(this.props.membershipId).then((response: ServerResponse<GeneralUser>) => {
             this.setState({bungieProfile: response.Response})
-            this.getDestinyProfile(response.Response)
+            this.getDestinyCharacters(response.Response);
         })
     }
 
@@ -52,11 +54,12 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
     }
 
     render(): ReactElement {
-        if (this.state.bungieProfile) {
-            return (<Profile profile={this.state.bungieProfile}/>)
+        if (this.state.bungieProfile && this.state.profileCharacters) {
+            return (<Profile profile={this.state.bungieProfile} characters={this.state.profileCharacters}/>)
+        } else {
+            return <>
+                <p>Loading...</p>
+            </>        
         }
-        return <>
-            <p>Loading...</p>
-        </>        
     }
 }
