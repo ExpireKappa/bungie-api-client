@@ -14,10 +14,9 @@ const send = (requestConfig: IRequestConfig) => {
         }
     }).then((response) => {
         if (response.status !== 200) {
-            console.log(response)
             throw new Error("Error with api request");
         }
-
+        
         return response.json();
     });
 }

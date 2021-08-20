@@ -15,7 +15,6 @@ interface IProfileLoaderProps {
 
 interface IProfileLoaderState {
     bungieProfile: GeneralUser | null
-    ready: boolean
 }
 
 export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoaderState> {
@@ -23,7 +22,7 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
 
     constructor(props: IProfileLoaderProps) {
         super(props);
-        this.state = {bungieProfile: null, ready: false}
+        this.state = {bungieProfile: null}
         this.membershipType = Number(this.props.membershipType);
 
     }
@@ -53,6 +52,11 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
     }
 
     render(): ReactElement {
-        return (<Profile profile={this.state.bungieProfile}/>)
+        if (this.state.bungieProfile) {
+            return (<Profile profile={this.state.bungieProfile}/>)
+        }
+        return <>
+            <p>Loading...</p>
+        </>        
     }
 }

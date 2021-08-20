@@ -9,12 +9,18 @@ interface IProfileProps {
 }
 
 export const Profile: FunctionComponent<IProfileProps> = (props) => {
-    const profile = props.profile;
+    if (props.profile === null) {
+        return <h2>ERROR LOADING PROFILE</h2>
+    }
+    
+    const profile = props.profile; 
+    const imagePath = `https://www.bungie.net${profile.profilePicturePath}`;
+;      
 
     return (
         <div className={"profile-container"}>
             <div className={"profile-name-container"}>
-                <img className={"profile-picture"} src={`https://www.bungie.net${profile?.profilePicturePath}`}/>
+                <img className={"profile-picture"} alt="Bungie account avatar" src={imagePath}/>
                 <div>
                     <h1>{profile?.displayName}</h1>
                     <p>{profile?.about}</p>
