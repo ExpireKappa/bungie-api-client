@@ -1,21 +1,26 @@
 import React, {FunctionComponent} from "react";
-
-import {IPlayerSearchCardProps} from "./interfaces/IPlayerSearchCardProps";
-
+import {IPlayerSearchCardProps} from "./interfaces/IDestinyProfileCardProps";
 import { useHistory } from "react-router-dom";
+import "./destinyProfileCard.css"
 
-import "./playerSearchCard.css"
-import {BungieMembershipType} from "bungie-api-ts/common";
-
-export const PlayerSearchCard: FunctionComponent<IPlayerSearchCardProps> = (props) => {
+export const DestinyProfileCard: FunctionComponent<IPlayerSearchCardProps> = (props) => {
     const iconPath = `https://www.bungie.net${props.item.profilePicturePath}`;
     const history = useHistory();
 
     const hasSteam = props.item.steamDisplayName !== undefined;
     const hasPsn = props.item.psnDisplayName !== undefined;
     const hasXbox = props.item.xboxDisplayName !== undefined;
+    const hasStadia = props.item.stadiaDisplayName !== undefined;
+    const hasBlizzard = props.item.blizzardDisplayName !== undefined;
 
     const getType = () => {
+        if (hasStadia) {
+            return 5; // TigerStadia
+        }
+        if (hasBlizzard) {
+            return 4; // TigerBlizzard
+        }
+
         if (hasSteam) {
             return 3; // TigerSteam
         }
@@ -27,8 +32,9 @@ export const PlayerSearchCard: FunctionComponent<IPlayerSearchCardProps> = (prop
         if (hasXbox) {
             return 1; // TigerXbox
         }
-    }
 
+        return 0;
+    }
 
     const onClick = () => {
         history.push(`/profile/${getType()}/${props.item.membershipId}`)
@@ -48,6 +54,8 @@ export const PlayerSearchCard: FunctionComponent<IPlayerSearchCardProps> = (prop
                 {hasSteam ? <span>Steam</span> : null}
                 {hasPsn ? <span>PSN</span> : null}
                 {hasXbox ? <span>Xbox</span> : null}
+                {hasBlizzard ? <span>Bnet</span> : null}
+                {hasStadia ? <span>Stadia</span> : null}
               </div>
           </div>
       </div>

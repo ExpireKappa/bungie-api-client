@@ -32,10 +32,11 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
         if (profile?.displayName) {
             // Todo: add some validation
             SearchDestinyPlayer(this.membershipType, profile.displayName).then((response: ServerResponse<Array<UserInfoCard>>) => {
-                console.log(response.Response[0].membershipId)
-                GetProfile(this.membershipType, response.Response[0].membershipId.toString()).then((response: ServerResponse<DestinyProfileResponse>) => {
-                    console.log(response)
-                })
+                if (response.Response[0]?.membershipId !== undefined) {
+                    GetProfile(this.membershipType, response.Response[0].membershipId.toString()).then((response: ServerResponse<DestinyProfileResponse>) => {
+                        console.log(response)
+                    })
+                }
             })
         }
     }
