@@ -27,10 +27,8 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
 
     getDestinyCharacters(profile: GeneralUser): void {
         GetMembershipDataById(profile.membershipId, -1).then((response: ServerResponse<UserMembershipData>) => {
-            console.log(response);
             if (response.Response.primaryMembershipId !== undefined) {
                 GetProfile(response.Response.destinyMemberships[0].membershipType, response.Response?.primaryMembershipId, [200]).then((response: ServerResponse<any>) =>  {
-                    console.log(response);
                     if (response.Response.characters.data !== undefined) {
                         this.setState({profileCharacters: response.Response.characters.data})
                     }
