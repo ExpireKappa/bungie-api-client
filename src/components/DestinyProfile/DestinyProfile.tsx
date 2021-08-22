@@ -1,24 +1,19 @@
 import {FunctionComponent} from "react";
-
 import {GeneralUser} from "bungie-api-ts/user";
+import { DestinyClass } from "bungie-api-ts/destiny2";
 
-import "./profile.css"
-import { DestinyCharacterComponent, DestinyClass } from "bungie-api-ts/destiny2";
-import { DictionaryComponentResponse } from "bungie-api-ts/destiny2";
+import "./destinyProfile.css"
 
 interface IProfileProps {
     profile: GeneralUser | null
     characters: any | null;
 }
 
-export const Profile: FunctionComponent<IProfileProps> = (props) => {
+export const DestinyProfile: FunctionComponent<IProfileProps> = (props) => {
     if (props.profile === null || props.characters === null) {
         return <h2>ERROR LOADING PROFILE</h2>
     }
 
-    console.log(props.characters);
-    
-    
     const profile = props.profile; 
     const imagePath = `https://www.bungie.net${profile.profilePicturePath}`;
     
@@ -32,6 +27,10 @@ export const Profile: FunctionComponent<IProfileProps> = (props) => {
         if (characterClass === 2) {
             return "Warlock"
         }
+    }
+
+    const getEmblemUrl = (path: string) => {
+        return `https://bungie.net${path}`
     }
 
     return (
@@ -49,16 +48,19 @@ export const Profile: FunctionComponent<IProfileProps> = (props) => {
                     {props.characters["2305843009344005649"] !== undefined &&
                         <div>
                             <p>{getClass(props.characters["2305843009344005649"].classType)}</p>
+                            <img alt="Destiny charater emblem" src={getEmblemUrl(props.characters["2305843009344005649"].emblemBackgroundPath)}/>
                         </div>
                     }
                     {props.characters["2305843009346764294"] !== undefined &&
                         <div>
                             <p>{getClass(props.characters["2305843009346764294"].classType)}</p>
+                            <img alt="Destiny charater emblem" src={getEmblemUrl(props.characters["2305843009346764294"].emblemBackgroundPath)} />
                         </div>
                     }
                     {props.characters["2305843009347204873"] !== undefined &&
                         <div>
                             <p>{getClass(props.characters["2305843009347204873"].classType)}</p>
+                            <img alt="Destiny charater emblem" src={getEmblemUrl(props.characters["2305843009347204873"].emblemBackgroundPath)} />
                         </div>
                     }
                 </div>

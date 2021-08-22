@@ -1,6 +1,7 @@
 import React, {FunctionComponent, ReactElement} from "react";
 import {IPlayerSearchCardProps} from "./interfaces/IDestinyProfileCardProps";
 import { useHistory } from "react-router-dom";
+
 import "./destinyProfileCard.css"
 
 export const DestinyProfileCard: FunctionComponent<IPlayerSearchCardProps> = (props): ReactElement => {

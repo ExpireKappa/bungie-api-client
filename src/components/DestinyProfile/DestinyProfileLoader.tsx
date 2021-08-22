@@ -1,12 +1,9 @@
 import React, {Component, ReactElement} from "react";
-
 import {ServerResponse} from "bungie-api-ts/common";
-import {GeneralUser, UserInfoCard, UserMembershipData} from "bungie-api-ts/user";
-import {DestinyCharacterComponent, DestinyComponentType, DestinyProfileResponse, DictionaryComponentResponse} from "bungie-api-ts/destiny2";
-
+import {GeneralUser, UserMembershipData} from "bungie-api-ts/user";
 import {GetMembershipDataById, GetUserById} from "../../api/user/api";
-import {GetProfile, SearchDestinyPlayer} from "../../api/destiny2/api";
-import {Profile} from "./profile.component";
+import {GetProfile} from "../../api/destiny2/api";
+import {DestinyProfile} from "./DestinyProfile";
 
 interface IProfileLoaderProps {
     membershipType: string
@@ -55,7 +52,7 @@ export class ProfileLoader extends Component<IProfileLoaderProps, IProfileLoader
 
     render(): ReactElement {
         if (this.state.bungieProfile && this.state.profileCharacters) {
-            return (<Profile profile={this.state.bungieProfile} characters={this.state.profileCharacters}/>)
+            return (<DestinyProfile profile={this.state.bungieProfile} characters={this.state.profileCharacters}/>)
         } else {
             return <>
                 <p>Loading...</p>
