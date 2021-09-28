@@ -1,0 +1,47 @@
+.search {
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 20px;
+}
+
+.search__input-container {
+    display: flex;
+    justify-content: center;
+}
+
+.search__input {
+    width: 400px;
+    padding: 5px;
+    border: solid thin lightgray;
+    background: transparent;
+    
+}
+
+.search-results {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-result {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 300px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #bababa;
+    
+}   
+
+.search-result__player-avatar {
+    height: 50px;
+    margin-right: 5px;
+}
+
+.search-result__player-info {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
