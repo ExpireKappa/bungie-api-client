@@ -1,7 +1,4 @@
-.app {
+body {
     margin: 0;
-    height: 100vh;
-    /* Potential for themeing */
-    background-color: #474747; 
-
+    background-color: #474747; /* Potential for themeing */
 }
