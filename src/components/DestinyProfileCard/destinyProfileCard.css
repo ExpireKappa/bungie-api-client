@@ -1,39 +1,21 @@
-.search-card-container {
-    width: 200px;
-    margin: 5px;
-    border: solid thin black;
+.profile-card {
     display: flex;
-    flex-direction: column;
-}
+    flex-direction: row;
+    align-items: center;
+    width: 300px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #bababa;
+    
+}   
 
-.search-card-top-wrapper {
-    display: flex;
-}
-
-.search-card-top-wrapper span {
-    flex-grow: 1;
-    margin: 5px;
-    align-self: center;
-    line-height: 25px;
-}
-
-.search-card-platform-icon {
+.profile-card__player-avatar {
     height: 50px;
-    width: 50px;
-    background: black;
-}
-
-.search-card-platform-container .platform-title {
-    display: flex;
-    background: #232324;
-}
-
-.search-card-platform-container .platform-title span {
-    margin: 0 auto;
-    color: white;
-}
-
-.search-card-platform-container .platform-list span {
     margin-right: 5px;
 }
 
+.profile-card__player-info {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
