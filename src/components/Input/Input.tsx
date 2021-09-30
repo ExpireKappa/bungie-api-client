@@ -1,4 +1,4 @@
-import React, { FunctionComponent, FocusEvent, useState } from "react";
+import React, { FunctionComponent } from "react";
 
 import "./input.css";
 
