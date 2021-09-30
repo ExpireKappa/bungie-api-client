@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import { DestinyProfileCard } from "../../components/DestinyProfileCard/DestinyProfileCard";
 import { Input } from "../../components/Input/Input";
 
 import "./home.css";
@@ -31,14 +32,7 @@ export const Home: FunctionComponent = () => {
             </div>
             <div className={"search-results"}>
                 {players.map(player => {
-                    return (
-                        <div className={"search-result"}>
-                            <img className={"search-result__player-avatar"} src={player.avatarPath} alt="Player avatar" />
-                            <div className={"search-result__player-info"}>
-                                <span>{player.name}</span>
-                            </div>
-                        </div>
-                    )
+                    return (<DestinyProfileCard player={player} key={players.indexOf(player)}/> )
                 })}
             </div>
         </div>
