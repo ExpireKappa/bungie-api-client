@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import { Input } from "../../components/Input/Input";
 
 import "./home.css";
 
@@ -6,7 +7,7 @@ export const Home: FunctionComponent = () => {
     return (
         <div className={"search"}>
             <div className={"search__input-container"}>
-                <input className={"search__input"} placeholder="Search by Bungie Name"/>
+                <Input className={"search__input"} placeholder="Search by Bungie Name"/>
             </div>
             <div className={"search-results"}>
                 {/* Mock Data for now */}

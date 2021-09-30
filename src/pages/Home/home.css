@@ -11,10 +11,6 @@
 
 .search__input {
     width: 400px;
-    padding: 5px;
-    border: solid thin lightgray;
-    background: transparent;
-    
 }
 
 .search-results {
