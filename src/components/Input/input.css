@@ -1,0 +1,21 @@
+.generic-input__border {
+    transition: box-shadow 1s;
+}
+
+.generic-input__border:hover {
+    box-shadow: 0px 0px 0px 2px white;
+    transition: box-shadow 250ms ease-in;
+}
+
+.generic-input {
+    padding: 10px;
+    border: solid 1px lightgray;
+    background: transparent;
+    margin: 2px;
+    outline: none;
+    color: white;
+}
+
+.generic-input:hover {
+    border: solid thin white; 
+}
