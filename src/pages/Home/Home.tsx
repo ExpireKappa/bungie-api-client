@@ -5,23 +5,23 @@ import { Input } from "../../components/Input/Input";
 import "./home.css";
 
 interface IPlayerCard {
-    avatarPath: string;
-    name: string;
+    platformIconPath: string
+    displayName: string;
 }
 
 export const Home: FunctionComponent = () => {
     const players: Array<IPlayerCard> = [
         {
-            avatarPath: "/logo192.png",
-            name: "Reasonable Name"
+            displayName: "Reasonable Name",
+            platformIconPath: "/logo192.png"
         },
         {
-            avatarPath: "/logo192.png",
-            name: "Super Long Name That Could Be Really Painful"
+            displayName: "Super Long Name That Could Be Really Painful",
+            platformIconPath: "/logo192.png"
         },
         {
-            avatarPath: "/logo192.png",
-            name: "Name"
+            displayName: "Name",
+            platformIconPath: "/logo192.png"
         }
     ]
     

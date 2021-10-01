@@ -9,12 +9,12 @@
     
 }   
 
-.profile-card__player-avatar {
-    height: 50px;
+.profile-card__platform-icon {
+    height: 25px;
     margin-right: 5px;
 }
 
-.profile-card__player-info {
+.profile-card__display-name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
