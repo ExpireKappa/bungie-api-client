@@ -1,7 +1,5 @@
 import React, {ReactElement, Component, ChangeEvent, SyntheticEvent} from "react";
-import {ServerResponse} from "bungie-api-ts/common";
 import {GeneralUser} from "bungie-api-ts/user";
-import {SearchUsers} from "../../api/user/api";
 
 import "./playerSearch.css"
 
@@ -29,12 +27,6 @@ export class PlayerSearch extends Component<{ }, IPlayerSearchState> {
 
     handleSearch(event: SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
-
-        SearchUsers(this.state.value).then((response: ServerResponse<Array<GeneralUser>>) => {
-            // const filtered = this.filterProfiles(response.Response);
-            // const searchItems = filtered.map((item: GeneralUser) => <DestinyProfileCard key={item.membershipId} item={item} />)
-            // this.setState({results: searchItems})
-        })
     }
 
     render(): ReactElement {
