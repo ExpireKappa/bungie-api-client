@@ -1,4 +1,4 @@
-import {getBungieNetUserById, getMembershipDataById} from "bungie-api-ts/user";
+import {getBungieNetUserById, getMembershipDataById, searchByGlobalNamePrefix} from "bungie-api-ts/user";
 import {http} from "../requestBase";
 
 export const GetUserById = (id: string) => {
@@ -13,3 +13,10 @@ export const GetMembershipDataById = (membershipId: string, membershipType: numb
         membershipType: membershipType
     });
 } 
+
+export const SearchByGlobalNamePrefix = (name: string, page: number = 0) => {
+    return searchByGlobalNamePrefix(http, {
+        displayNamePrefix: name,
+        page: page
+    });
+}
