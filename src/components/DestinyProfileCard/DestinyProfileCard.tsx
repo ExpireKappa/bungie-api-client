@@ -9,10 +9,14 @@ interface IDestinyProfileCardProps {
     }
 }
 
+const platformUrl = "https://bungie.net";
+
 export const DestinyProfileCard: FunctionComponent<IDestinyProfileCardProps> = (props) => {
+    const platformIcon = platformUrl + props.player.platformIconPath;
+    
     return (
         <div className={"profile-card"}>
-            <img className={"profile-card__platform-icon"} src={props.player.platformIconPath} alt="Player's platform icon" />
+            <img className={"profile-card__platform-icon"} src={platformIcon} alt="Player's platform icon" />
             <div className={"profile-card__display-name"}>
                 <span>{props.player.displayName}</span>
             </div>

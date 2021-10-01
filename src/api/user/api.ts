@@ -18,5 +18,7 @@ export const SearchByGlobalNamePrefix = (name: string, page: number = 0) => {
     return searchByGlobalNamePrefix(http, {
         displayNamePrefix: name,
         page: page
-    });
+    }).then(response => {
+        return response.Response
+    }); // Todo: error handling
 }
