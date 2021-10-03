@@ -18,3 +18,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.profile-card__bungie-namecode {
+    color: #2c75ff;
+}

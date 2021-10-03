@@ -9,6 +9,7 @@ import "./home.css";
 interface IPlayerCard {
     platformIconPath: string
     displayName: string;
+    displayCode?: number | undefined;
 }
 
 export const Home: FunctionComponent = () => {
@@ -38,6 +39,7 @@ export const Home: FunctionComponent = () => {
             const formattedUsers = validUsers.map(player => {
                 return {
                     displayName: player.bungieGlobalDisplayName,
+                    displayCode: player.bungieGlobalDisplayNameCode,
                     platformIconPath: player.destinyMemberships[0].iconPath
                 }
             })
