@@ -2,6 +2,7 @@
     transition: box-shadow 1s;
 }
 
+/* Still need to implement the border expanding */
 .generic-input__border:hover,
 .generic-input__border.focus {
     box-shadow: 0px 0px 0px 2px white;

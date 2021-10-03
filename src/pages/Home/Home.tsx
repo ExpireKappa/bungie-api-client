@@ -1,7 +1,8 @@
-import { ChangeEvent, FunctionComponent, useState } from "react";
+import { ChangeEvent, FunctionComponent, useEffect, useMemo, useState } from "react";
 import { SearchByGlobalNamePrefix } from "../../api/user/api";
 import { DestinyProfileCard } from "../../components/DestinyProfileCard/DestinyProfileCard";
 import { Input } from "../../components/Input/Input";
+import debounce from 'lodash.debounce';
 
 import "./home.css";
 
@@ -12,20 +13,21 @@ interface IPlayerCard {
 
 export const Home: FunctionComponent = () => {
     let [players, setPlayers] = useState<Array<IPlayerCard>>([]);
-    let [inputValue, setInputValue] = useState<string>("");
+    let [hasNoProfiles, setHasNoProfiles] = useState<boolean>(false);
 
     const onTextInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        setInputValue(value);
 
         if (value === "") {
             setPlayers([]);
+            setHasNoProfiles(false)
             return;
         }
 
         SearchByGlobalNamePrefix(value, 0).then(response => {
             if (response.searchResults.length === 0) {
                 setPlayers([]);
+                setHasNoProfiles(true)
                 return;
             }
             
@@ -40,19 +42,29 @@ export const Home: FunctionComponent = () => {
                 }
             })
             
-            // Feel the need for debouncing on the input here
-            setPlayers(formattedUsers); 
+            setPlayers(formattedUsers);
+            setHasNoProfiles(false) 
         });
     }
 
-    const containsNoProfiles = players.length === 0 && inputValue !== "";
+    const debouncedChangeHandler = useMemo(
+        () => debounce(onTextInputChange, 500), 
+        []
+    );
+
+    useEffect(() => {
+        return () => {
+            debouncedChangeHandler.cancel()
+        }
+    });
+
     return (
         <div className={"search"}>
             <div className={"search__input-container"}>
-                <Input className={"search__input"} placeholder="Search by Bungie Name" onChange={onTextInputChange}/>
+                <Input className={"search__input"} placeholder="Search by Bungie Name" onChange={debouncedChangeHandler}/>
             </div>
             <div className={"search-results"}>
-                {containsNoProfiles && <span>No profiles found</span>}
+                {hasNoProfiles && <span>No profiles found</span>}
                 {players.length > 0 && players.map(player => {
                     return (<DestinyProfileCard player={player} key={players.indexOf(player)}/> )
                 })}

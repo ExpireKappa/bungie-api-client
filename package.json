@@ -11,6 +11,7 @@
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
     "bungie-api-ts": "^4.11.0",
+    "lodash.debounce": "^4.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
@@ -43,6 +44,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.6",
     "@types/react-router-dom": "^5.1.7"
   }
 }
