@@ -5,11 +5,22 @@ import { Input } from "../../components/Input/Input";
 import debounce from 'lodash.debounce';
 
 import "./home.css";
+import { UserSearchResponseDetail } from "bungie-api-ts/user";
 
 interface IPlayerCard {
     platformIconPath: string
     displayName: string;
     displayCode?: number | undefined;
+}
+
+const mapPlayerProfiles = (players: Array<UserSearchResponseDetail>): Array<IPlayerCard> => {
+    return players.map(player => {
+        return {
+            displayName: player.bungieGlobalDisplayName,
+            displayCode: player.bungieGlobalDisplayNameCode,
+            platformIconPath: player.destinyMemberships[0].iconPath
+        }
+    })
 }
 
 export const Home: FunctionComponent = () => {
@@ -25,26 +36,29 @@ export const Home: FunctionComponent = () => {
             return;
         }
 
-        SearchByGlobalNamePrefix(value, 0).then(response => {
+        // Only want to search by name
+        const urlSafeValue = value.split("#")[0];
+        SearchByGlobalNamePrefix(urlSafeValue, 0).then(response => {
             if (response.searchResults.length === 0) {
                 setPlayers([]);
                 setHasNoProfiles(true)
                 return;
             }
             
-            const validUsers = response.searchResults.filter(player => player.destinyMemberships.length !== 0);
+            const validDestinyPlayers = response.searchResults.filter(player => player.destinyMemberships.length !== 0);
             
-            // Could do extra processing to split bungie name inputs by #
-            // Then sort the results by the provided bungieId
-            const formattedUsers = validUsers.map(player => {
-                return {
-                    displayName: player.bungieGlobalDisplayName,
-                    displayCode: player.bungieGlobalDisplayNameCode,
-                    platformIconPath: player.destinyMemberships[0].iconPath
-                }
-            })
+            // Searching by bungieCode
+            let profilesToDisplay: Array<IPlayerCard> = [];
+            if (value.includes("#")) {
+                const bungieCode = Number(value.split("#")[1]);
+                const matchingProfiles = validDestinyPlayers.filter(player => player.bungieGlobalDisplayNameCode === bungieCode);
+                profilesToDisplay = mapPlayerProfiles(matchingProfiles);
+                
+            } else {
+                profilesToDisplay = mapPlayerProfiles(validDestinyPlayers);
+            }
             
-            setPlayers(formattedUsers);
+            setPlayers(profilesToDisplay);
             setHasNoProfiles(false) 
         });
     }
