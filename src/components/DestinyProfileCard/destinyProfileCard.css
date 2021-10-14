@@ -3,20 +3,44 @@
     flex-direction: row;
     align-items: center;
     width: 300px;
+    min-height: 20px;
     margin-bottom: 10px;
     padding: 5px;
     background-color: #bababa;
 }   
 
 .profile-card__platform-icon {
-    height: 25px;
-    margin-right: 5px;
+    font-family: "DestinyIcons";
+    color: black;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+}
+
+.profile-card__platform-icon.xbox::before {
+    content: "\F100";
+}
+
+.profile-card__platform-icon.psn::before {
+    content: "\F101";
+}
+
+.profile-card__platform-icon.steam::before {
+    content: "\F103";
+}
+
+.profile-card__platform-icon.blizzard::before {
+    content: "\F104";
+}
+
+.profile-card__platform-icon.stadia::before {
+    content: "\F105";
 }
 
 .profile-card__display-name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-left: 5px;
 }
 
 .profile-card__bungie-namecode {

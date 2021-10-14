@@ -5,12 +5,12 @@ import { Input } from "../../components/Input/Input";
 import debounce from 'lodash.debounce';
 
 import "./home.css";
-import { UserSearchResponseDetail } from "bungie-api-ts/user";
+import { BungieMembershipType, UserSearchResponseDetail } from "bungie-api-ts/user";
 
 interface IPlayerCard {
-    platformIconPath: string
     displayName: string;
     displayCode?: number | undefined;
+    platform: BungieMembershipType
 }
 
 const mapPlayerProfiles = (players: Array<UserSearchResponseDetail>): Array<IPlayerCard> => {
@@ -18,7 +18,7 @@ const mapPlayerProfiles = (players: Array<UserSearchResponseDetail>): Array<IPla
         return {
             displayName: player.bungieGlobalDisplayName,
             displayCode: player.bungieGlobalDisplayNameCode,
-            platformIconPath: player.destinyMemberships[0].iconPath
+            platform: player.destinyMemberships[0].membershipType
         }
     })
 }
