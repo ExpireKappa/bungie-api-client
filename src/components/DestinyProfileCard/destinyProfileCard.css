@@ -3,17 +3,22 @@
     flex-direction: row;
     align-items: center;
     width: 300px;
-    min-height: 20px;
+    min-height: 35px;
     margin-bottom: 10px;
-    padding: 5px;
     background-color: #bababa;
 }   
 
 .profile-card__platform-icon {
     font-family: "DestinyIcons";
     color: black;
-    font-size: 1.2rem;
-    line-height: 1.2rem;
+    height: 35px;
+    width: 35px;
+    font-size: 20px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+    
 }
 
 .profile-card__platform-icon.xbox::before {
