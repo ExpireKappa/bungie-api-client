@@ -9,10 +9,9 @@ export const GetProfile = (membershipType: number, destinyMembershipId: string, 
     });
 }
 
-export const SearchDestinyPlayer = (membershipType: number, displayName: string, returnOriginalProfile: boolean = false) => {
+export const SearchDestinyPlayer = (membershipType: number, displayName: string) => {
     return searchDestinyPlayer(http,{
         membershipType: membershipType,
         displayName: displayName,
-        returnOriginalProfile: returnOriginalProfile
     });
 }

@@ -1,39 +1,53 @@
-.search-card-container {
-    width: 200px;
-    margin: 5px;
-    border: solid thin black;
+.profile-card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    width: 300px;
+    min-height: 35px;
+    margin-bottom: 10px;
+    background-color: #bababa;
+}   
+
+.profile-card__platform-icon {
+    font-family: "DestinyIcons";
+    color: black;
+    height: 35px;
+    width: 35px;
+    font-size: 20px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+    
 }
 
-.search-card-top-wrapper {
-    display: flex;
+.profile-card__platform-icon.xbox::before {
+    content: "\F100";
 }
 
-.search-card-top-wrapper span {
-    flex-grow: 1;
-    margin: 5px;
-    align-self: center;
-    line-height: 25px;
+.profile-card__platform-icon.psn::before {
+    content: "\F101";
 }
 
-.search-card-platform-icon {
-    height: 50px;
-    width: 50px;
-    background: black;
+.profile-card__platform-icon.steam::before {
+    content: "\F103";
 }
 
-.search-card-platform-container .platform-title {
-    display: flex;
-    background: #232324;
+.profile-card__platform-icon.blizzard::before {
+    content: "\F104";
 }
 
-.search-card-platform-container .platform-title span {
-    margin: 0 auto;
-    color: white;
+.profile-card__platform-icon.stadia::before {
+    content: "\F105";
 }
 
-.search-card-platform-container .platform-list span {
-    margin-right: 5px;
+.profile-card__display-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 5px;
 }
 
+.profile-card__bungie-namecode {
+    color: #2c75ff;
+}
